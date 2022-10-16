@@ -178,10 +178,10 @@ static void editor_input(struct editor *p_editor) {
 			break;
 
 		case KEY_UP:
-			if (p_editor->cury > 0)
+			if (p_editor->cury > 0) {
 				-- p_editor->cury;
-			else
 				editor_calc_buff_pos(p_editor);
+			}
 
 			break;
 
@@ -197,10 +197,10 @@ static void editor_input(struct editor *p_editor) {
 			break;
 
 		case KEY_LEFT:
-			if (p_editor->curx > 0)
+			if (p_editor->curx > 0) {
 				-- p_editor->curx;
-			else
 				editor_calc_buff_pos(p_editor);
+			}
 
 			break;
 

@@ -33,8 +33,6 @@ $ ./bin/app FILENAME
 See `./bin/app -h` for controls and help.
 
 ## Bugs
-- A bug with the buffer position acting weird sometimes, im too lazy to fix right now
-
 If you find any bugs, please create an issue and report them.
 
 ## Dependencies
