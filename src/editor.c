@@ -67,7 +67,7 @@ static void editor_render(struct editor *p_editor) {
 
 	if (print) {
 		move(1, 1);
-		printw("%014X | ", i);
+		printw("%014llX | ", (unsigned long long)i);
 	}
 
 	int x = 0, y = 0;
@@ -96,13 +96,13 @@ static void editor_render(struct editor *p_editor) {
 			++ y;
 
 			move(y + 1, 1);
-			printw("%014X | ", i + 1);
+			printw("%014llX | ", (unsigned long long)i + 1);
 		} else
 			++ x;
 	}
 
 	move(y + 1 + (int)print, 1);
-	printw("%014X | ", p_editor->size);
+	printw("%014llX | ", (unsigned long long)p_editor->size);
 
 	if (p_editor->editing) {
 		move(cury_render, curx_render + (1 - p_editor->cur_ch));
