@@ -18,7 +18,8 @@ static void editor_increase_buff(struct editor *p_editor) {
 }
 
 static void editor_decrease_buff(struct editor *p_editor) {
-	-- p_editor->size;
+	if (p_editor->size > 1)
+		-- p_editor->size;
 }
 
 static void editor_calc_bytes_in_a_row(struct editor *p_editor) {
