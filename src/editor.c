@@ -1,5 +1,9 @@
 #include "editor.h"
 
+static void editor_calc_buff_pos(struct editor *p_editor) {
+	p_editor->buff_pos = p_editor->cury * p_editor->bytes_in_a_row + p_editor->curx;
+}
+
 static void editor_increase_buff(struct editor *p_editor) {
 	++ p_editor->size;
 	if (p_editor->size > p_editor->buff_size) {
@@ -20,6 +24,16 @@ static void editor_increase_buff(struct editor *p_editor) {
 static void editor_decrease_buff(struct editor *p_editor) {
 	if (p_editor->size > 1)
 		-- p_editor->size;
+
+	if (p_editor->buff_pos >= p_editor->size) {
+		if (p_editor->curx == 0) {
+			p_editor->curx = p_editor->bytes_in_a_row - 1;
+			-- p_editor->cury;
+		} else
+			-- p_editor->curx;
+
+		editor_calc_buff_pos(p_editor);
+	}
 }
 
 static void editor_calc_bytes_in_a_row(struct editor *p_editor) {
@@ -33,10 +47,6 @@ static void editor_calc_bytes_in_a_row(struct editor *p_editor) {
 	}
 
 	p_editor->bytes_in_a_row = (w - RULER_LENGTH) / 3;
-}
-
-static void editor_calc_buff_pos(struct editor *p_editor) {
-	p_editor->buff_pos = p_editor->cury * p_editor->bytes_in_a_row + p_editor->curx;
 }
 
 static void editor_save_file(struct editor *p_editor) {
