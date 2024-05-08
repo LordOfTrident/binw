@@ -13,6 +13,8 @@ void usage(void) {
 	     "  r       Scroll up\n"
 	     "  i       Increase the buffer by 1\n"
 	     "  d       Decrease the buffer by 1\n"
+	     "  v       Insert a byte\n"
+	     "  x       Remove a byte\n"
 	     "  arrows  Move the cursor\n"
 	     "\nWhen in editing mode, you are typing the byte digits in hexadecimal");
 

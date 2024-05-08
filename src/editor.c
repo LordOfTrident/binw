@@ -39,7 +39,7 @@ static void editor_decrease_buff(struct editor *p_editor) {
 static void editor_insert(struct editor *p_editor) {
 	editor_increase_buff(p_editor);
 
-	for (size_t i = p_editor->size - 1; i --> p_editor->buff_pos; ++ i)
+	for (size_t i = p_editor->size - 1; i --> p_editor->buff_pos;)
 		p_editor->buff[i + 1] = p_editor->buff[i];
 
 	p_editor->buff[p_editor->buff_pos] = 0;
