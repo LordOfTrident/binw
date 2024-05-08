@@ -36,6 +36,22 @@ static void editor_decrease_buff(struct editor *p_editor) {
 	}
 }
 
+static void editor_insert(struct editor *p_editor) {
+	editor_increase_buff(p_editor);
+
+	for (size_t i = p_editor->size - 1; i --> p_editor->buff_pos; ++ i)
+		p_editor->buff[i + 1] = p_editor->buff[i];
+
+	p_editor->buff[p_editor->buff_pos] = 0;
+}
+
+static void editor_remove(struct editor *p_editor) {
+	for (size_t i = p_editor->buff_pos + 1; i < p_editor->size; ++ i)
+		p_editor->buff[i - 1] = p_editor->buff[i];
+
+	editor_decrease_buff(p_editor);
+}
+
 static void editor_calc_bytes_in_a_row(struct editor *p_editor) {
 	int w = getmaxx(stdscr), h = getmaxy(stdscr);
 
@@ -174,6 +190,8 @@ static void editor_input(struct editor *p_editor) {
 
 		case 'i': editor_increase_buff(p_editor); break;
 		case 'd': editor_decrease_buff(p_editor); break;
+		case 'v': editor_insert       (p_editor); break;
+		case 'x': editor_remove       (p_editor); break;
 
 		case 'f':
 			++ p_editor->scroll;
